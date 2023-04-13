@@ -1,0 +1,9 @@
+# 크롤링 데이터
+CREATE TABLE image
+(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID'
+    , path VARCHAR(100) NOT NULL COMMENT '파일경로'
+    , title VARCHAR(100) COMMENT '기사제목'
+    , create_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '등록일'
+) COMMENT '이미지';
+
