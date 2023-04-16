@@ -1,23 +1,32 @@
-const request = require('request');
 const cheerio = require('cheerio');
-
+const axios = require('axios').create({
+    headers: {
+        'Accept': '*/*'
+    },
+    timeout: 10000
+});
 
 
 module.exports = {
-    startCrawling: (callback) => {
-        const result = [];
+    startCrawling: async () => {
+        const url = "https://entertain.naver.com/home";
+        const results = [];
 
-        request('https://entertain.naver.com/home', (err, res, body) => {
-            const $ = cheerio.load(body)
-            const bodyList = $("#left_cont > div.home_hdline_grid > div.hdline_type_thumb_sub > ul > li > a").map((i, element) => {
+        try {
+            const html = await axios.get(url)
+            const $ = cheerio.load(html.data);
+            const bodyList = $("#left_cont > div.home_hdline_grid > div.hdline_type_thumb_sub > ul > li > a");
+            bodyList.map((i, element) => {
                 const image = String($(element).attr('href'));
                 const scraping = {
                     'image': `${image}`
                 }
-                result.push(scraping);
+                results.push(scraping);
             });
-            callback(result);
-        });
+        } catch(err) {
+            console.log(err);
+        }
+
+        return results;
     }
-    //#left_cont > div.home_hdline_grid > div.hdline_type_thumb_sub > ul > li:nth-child(1)
 }
