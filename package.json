@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "express crawling project",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./app.js",
+    "start": "pm2 start ecosystem.config.cjs",
     "dev": "nodemon ./app.js"
   },
   "keywords": [
@@ -22,6 +23,10 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.4",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.21.4",
     "nodemon": "^2.0.22"
   }
 }

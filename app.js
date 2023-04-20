@@ -1,8 +1,9 @@
-const express = require('express');
-const morgan = require('morgan');
-require('dotenv').config();
+import express from 'express';
+import morgan from 'morgan';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const crawler = require('./modules/crawler');
+import crawler from './modules/crawler.js';
 
 const port = process.env.SERVER_PORT || 3000;
 const app = express();
